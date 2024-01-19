@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Scopes\DespesaScope;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,9 +26,10 @@ class Despesa extends Model
     protected static function booted() {
         static::addGlobalScope(new DespesaScope);
     }
+    
 
     public function store($data) {
-        // $data->data = CAST DATA
+        $data['data'] = Carbon::parse($data['data']);
         $instance = $this->newInstance($data);
 
         $instance->usuario()

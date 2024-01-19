@@ -3,20 +3,14 @@
 namespace App\Policies;
 
 use App\Models\Despesa;
-use App\Models\User;
 use App\Models\Usuario;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
-class DespesaPolicy
+class DespesasPolicy
 {
-    protected Usuario $usuario;
-    protected Despesa $despesa;
+    use HandlesAuthorization;
 
-    public function __construct(Usuario $usuario, Despesa $despesa) {
-        $this->usuario = $usuario;
-        $this->despesa = $despesa;
-    }
-
-    public function interact() {
-        return $this->despesa->usuario_id === $this->usuario->id;
+    public function interact(Usuario $usuario, Despesa $despesa) {
+        return $despesa->usuario_id === $usuario->id;
     }
 }

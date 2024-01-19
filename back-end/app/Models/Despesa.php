@@ -26,7 +26,6 @@ class Despesa extends Model
     protected static function booted() {
         static::addGlobalScope(new DespesaScope);
     }
-    
 
     public function store($data) {
         $data['data'] = Carbon::createFromFormat('d/m/Y', $data['data']);
@@ -38,6 +37,23 @@ class Despesa extends Model
         $instance->save();
 
         return $instance;
+    }
+
+    public function updateDespesa($data) {
+        if($data['data']) {
+            $data['data'] = Carbon::createFromFormat('d/m/Y', $data['data']);
+        }
+
+        $despesa = $this->find($data['id']);
+
+        if(!$despesa) {
+            return false;
+        }
+
+        $despesa->fill($data);
+        $despesa->save();
+
+        return $despesa;
     }
 
     public function usuario() {

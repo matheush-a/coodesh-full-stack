@@ -22,7 +22,7 @@ class DespesaController extends Controller
     public function delete($id) {
         $despesa = $this->despesa->find($id);
 
-        if(!$despesa){
+        if(!$despesa) {
             return response()->json("Despesa not found", Response::HTTP_NOT_FOUND);
         }
 
@@ -50,6 +50,25 @@ class DespesaController extends Controller
 
         Mail::to($despesa->usuario->email)
             ->send(new DespesaCreated($despesa->usuario));
+        
+        return $despesa;
+    }
+
+    public function update(Request $request) {
+        $this->validator->validate($request, [
+            'id' => ['required', 'numeric', 'exists:despesas'],
+            'descricao' => ['max:191'],
+            'valor' => ['numeric', 'min:0'],
+            'data' => ['date_format:d/m/Y', 'before_or_equal:' . now()->format('d/m/Y')],
+        ]);
+    
+        $despesa = $this->despesa->updateDespesa($request->all());
+
+        if(!$despesa) {
+            return response()->json("Despesa not found", Response::HTTP_NOT_FOUND);
+        }
+
+        $despesa->load('usuario');
         
         return $despesa;
     }

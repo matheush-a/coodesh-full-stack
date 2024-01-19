@@ -22,7 +22,7 @@ class AuthController extends Controller
             'email' => ['required'],
             'senha' => ['required'],
         ]);
-
+        
         $attempt = $this->usuario
             ->attempt($request
             ->only('email', 'senha'));

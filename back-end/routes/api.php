@@ -27,6 +27,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
         Route::delete('/{id}', [DespesaController::class, 'delete']);
         Route::get('/', [DespesaController::class, 'index']);
         Route::get('/{id}', [DespesaController::class, 'show']);
+        Route::patch('/', [DespesaController::class, 'update']);
     });
 });
 

@@ -41,7 +41,7 @@ class DespesaController extends Controller
         $this->validator->validate($request, [
             'descricao' => ['required', 'max:191'],
             'valor' => ['required', 'numeric', 'min:0'],
-            'data' => ['required', 'date', 'date_format:d/m/Y', 'before_or_equal:' . now()->format('d/m/Y')],
+            'data' => ['required', 'date_format:d/m/Y', 'before_or_equal:' . now()->format('d/m/Y')],
         ]);
     
         $despesa = $this->despesa->store($request->all());

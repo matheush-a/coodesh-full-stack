@@ -29,7 +29,7 @@ class Despesa extends Model
     
 
     public function store($data) {
-        $data['data'] = Carbon::parse($data['data']);
+        $data['data'] = Carbon::createFromFormat('d/m/Y', $data['data']);
         $instance = $this->newInstance($data);
 
         $instance->usuario()

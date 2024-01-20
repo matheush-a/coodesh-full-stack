@@ -54,7 +54,12 @@ class UsuarioController extends Controller
             'email' => ['email', 'unique:usuarios,id'],
         ]);
 
+        $usuarioPorEmail = $this->usuario->byEmail($request['email']);
         $usuario = $this->usuario->find($id);
+
+        if($usuarioPorEmail['id'] !== $usuario['id']) {
+            return response()->json("This email already exists in our database.", Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
 
         if(!$usuario) {
             return response()->json("Usuário not found", Response::HTTP_NOT_FOUND);

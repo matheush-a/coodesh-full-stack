@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DespesaController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Resources\UsuarioResource;
 use Illuminate\Support\Facades\Route;
 
 /*

@@ -1,5 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
+    <snackbar-element ref="snackbar"/>
     <q-header elevated>
       <q-toolbar>
         <span @click="goBack">
@@ -43,6 +44,7 @@
 
 <script>
 import UsuarioService from 'src/services/usuario.service';
+import SnackbarElement from 'src/components/SnackbarElement.vue';
 
 export default {
   data() {
@@ -53,6 +55,9 @@ export default {
         email: '',
       },
     };
+  },
+  components: {
+    SnackbarElement,
   },
   mounted() {
     if (this.$route.params.id) {
@@ -65,28 +70,38 @@ export default {
         .then(response => {
           this.user = response.data;
         })
-        .catch(error => {
-          console.error('Error fetching user:', error);
+        .catch((data) => {
+          this.$refs.snackbar.showSnackbar(data.response.data, "error");
+          this.$refs.snackbar.showSnackbar(error, "error");
         });
     },
-    saveUser() {
+    async saveUser() {
       if (this.user.id) {
-        UsuarioService.update(this.user)
+        await UsuarioService.update(this.user)
           .then(() => {
-            this.$router.push('/');
+            this.$refs.snackbar.showSnackbar("Usuário atualizado com sucesso!", "success");
+
+            setTimeout(() => {
+              this.$router.push('/');
+            }, 1500);
           })
-          .catch(error => {
-            console.error('Error updating user:', error);
+          .catch((data) => {
+            this.$refs.snackbar.showSnackbar(data.response.data, "error");
           });
       } else {
-        UsuarioService.store(this.user)
+        await UsuarioService.store(this.user)
           .then(() => {
-            this.$router.push('/');
+            this.$refs.snackbar.showSnackbar("Usuário criado com sucesso!", "success");
+
+            setTimeout(() => {
+              this.$router.push('/');
+            }, 1500);
           })
-          .catch(error => {
-            console.error('Error adding user:', error);
+          .catch((error) => {
+            this.$refs.snackbar.showSnackbar(error, "error");
           });
       }
+
     },
     goBack() {
       this.$router.push('/');

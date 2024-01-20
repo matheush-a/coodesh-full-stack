@@ -1,5 +1,6 @@
 <template>
   <q-page-container>
+    <snackbar ref="snackbar" />
     <q-page class="user-list">
       <q-header elevated>
         <q-toolbar>

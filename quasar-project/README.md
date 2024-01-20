@@ -6,20 +6,22 @@ A Quasar Project
 ## Instale as dependências
 ```bash
 yarn
-# or
+# ou
 npm install
 ```
 
 ### Execute em modo de desenvolvimento
 ```bash
-quasar dev
+yarn dev
+# ou
+npm run dev
 ```
 
 
 ### Verifique a qualidade do código
 ```bash
 yarn lint
-# or
+# ou
 npm run lint
 ```
 
@@ -27,7 +29,7 @@ npm run lint
 ### Formate os arquivos
 ```bash
 yarn format
-# or
+# ou
 npm run format
 ```
 

@@ -1,21 +1,22 @@
+>This is a challenge by Coodesh
 # Onfly (quasar-project)
 
 A Quasar Project
 
-## Install the dependencies
+## Instale as dependências
 ```bash
 yarn
 # or
 npm install
 ```
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
+### Execute em modo de desenvolvimento
 ```bash
 quasar dev
 ```
 
 
-### Lint the files
+### Verifique a qualidade do código
 ```bash
 yarn lint
 # or
@@ -23,7 +24,7 @@ npm run lint
 ```
 
 
-### Format the files
+### Formate os arquivos
 ```bash
 yarn format
 # or
@@ -32,10 +33,7 @@ npm run format
 
 
 
-### Build the app for production
+### Gere o aplicativo para modo de produção
 ```bash
 quasar build
 ```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).

@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::group(['prefix' => 'usuarios'], function() {
         Route::delete('/logout', [AuthController::class, 'logout']);
-        Route::get('/', [UsuarioController::class, 'index']);
-        Route::patch('/', [UsuarioController::class, 'update']);
+        // Route::get('/', [UsuarioController::class, 'index']);
+        // Route::patch('/', [UsuarioController::class, 'update']);
     });
 
     Route::group(['prefix' => 'despesas'], function() {
@@ -34,4 +34,8 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
 Route::group(['prefix' => 'usuarios'], function() {
     Route::post('/', [UsuarioController::class, 'store']);
     Route::post('/login', [AuthController::class, 'login']);
+    Route::get('/', [UsuarioController::class, 'index']);
+    Route::get('/{id}', [UsuarioController::class, 'show']);
+    Route::patch('/{id}', [UsuarioController::class, 'update']);
+    Route::delete('/{id}', [UsuarioController::class, 'destroy']);
 });

@@ -59,4 +59,12 @@ class Usuario extends Authenticatable
 
         return $instance;
     }
+
+    public function updateUser($id, $data) {
+        $usuario = $this->find($id);
+        $usuario->fill($data);
+        $usuario->save();
+        
+        return $usuario;
+    }
 }

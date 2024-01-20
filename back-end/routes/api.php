@@ -19,7 +19,7 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::group(['prefix' => 'usuarios'], function() {
         Route::delete('/logout', [AuthController::class, 'logout']);
         Route::get('/', [UsuarioController::class, 'index']);
-        Route::put('/', [UsuarioController::class, 'update']);
+        Route::patch('/', [UsuarioController::class, 'update']);
     });
 
     Route::group(['prefix' => 'despesas'], function() {
